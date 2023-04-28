@@ -33,7 +33,7 @@ def button_message(message):
 def func_text(message):
     # прописываем последстиве на нажатые кнопки 
     if message.text == "Топ-10 OWASP": # пишем сдесь что если в чате от пользователя есть такое сообщение то выполнять следующие действия 
-       info_pars_top10owasp = Parsing(url = official_site_topowasp, driver= 'C:/Users/user/Desktop/proect/python/Tg_bot_ib/geckodriver.exe') # Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
+       info_pars_top10owasp = Parsing(url = official_site_topowasp, driver= '/geckodriver.exe') # Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
        result_pars_top10owasp = [info_pars_top10owasp.paht_x(f'/html/body/main/div/div[1]/section[1]/ul/li[{i}]') for i in range(1,11)]# создаем генератор и пребераем от 1 до 11 и подстовляем значение в путь до нашего тега
        bot.send_message(message.chat.id, '\n—'.join(result_pars_top10owasp)) # далее одним сообщением спомощю метода join запускаем генератор и с новой строки выводим наши теги(join тут нужен что бы запустить гениратор и выводимые значения тегов не были в типе данных списков)
        info_pars_top10owasp.clous()#Так как парскер парсит данные через веб драйвер для того что бы наш сервер не могли задудосить мы его закрываем 
@@ -41,14 +41,14 @@ def func_text(message):
     # прописываем последстиве на нажатые кнопки 
     
     elif message.text == "Кол-во атак":# пишем сдесь что если в чате от пользователя есть такое сообщение то выполнять следующие действия 
-        info_pars = Parsing(url = official_site_attacks, driver= 'C:/Users/user/Desktop/proect/python/Tg_bot_ib/geckodriver.exe')# Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
+        info_pars = Parsing(url = official_site_attacks, driver= '/geckodriver.exe')# Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
         bot.send_message(message.chat.id,info_pars.paht_x('/html/body/div/div[2]/div/div[2]/div[3]/div/article[1]/div[1]/div/div/div/div[1]/div[1]/div/p')) # выводим только один тег который нам понадобиться и выводим его в чат
         bot.send_message(message.chat.id,f"офийальный сайт {official_site_attacks}") # даем ссылку на ресурс от куда брали информацию
         info_pars.clous()# Так как парскер парсит данные через веб драйвер для того что бы наш сервер не могли задудосить мы его закрываем 
     # прописываем последстиве на нажатые кнопки 
     
     elif message.text == "Как себя обезопасить?":# пишем сдесь что если в чате от пользователя есть такое сообщение то выполнять следующие действия 
-        info_pars_ib = Parsing(url = official_site_ib, driver= 'C:/Users/user/Desktop/proect/python/Tg_bot_ib/geckodriver.exe')# Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
+        info_pars_ib = Parsing(url = official_site_ib, driver= '/geckodriver.exe')# Инцулизируем класс парсинга вставляем конкретный сайт и ссылку на драйвер брузера
         teg_pars_ib = ['3','5','8','10','11', '14','17','19']
         result_pars_ib_teg_p = [info_pars_ib.paht_x(f'/html/body/div[3]/div/main/div[1]/section[1]/div/p[{i}]') for i in teg_pars_ib] #
         bot.send_message(message.chat.id, '\n—'.join(result_pars_ib_teg_p))# далее одним сообщением спомощю метода join запускаем генератор и с новой строки выводим наши теги
